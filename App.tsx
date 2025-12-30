@@ -8,6 +8,7 @@ import { CampaignBuilder } from './pages/CampaignBuilder';
 import { ContentLibrary } from './pages/ContentLibrary';
 import { Analytics } from './pages/Analytics';
 import { Settings } from './pages/Settings';
+import { OAuthCallback } from './pages/OAuthCallback';
 
 const App: React.FC = () => {
   return (
@@ -39,6 +40,7 @@ const App: React.FC = () => {
               <Route path="/library" element={<ContentLibrary />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/oauth-callback" element={<OAuthCallback />} />
               <Route path="*" element={<Dashboard />} />
             </Routes>
           </div>

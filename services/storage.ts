@@ -5,6 +5,7 @@ const ASSETS_KEY = 'astromedia_assets';
 const POSTS_KEY = 'astromedia_posts';
 const CAMPAIGNS_KEY = 'astromedia_campaigns';
 const ACCOUNTS_KEY = 'astromedia_accounts';
+const TOKENS_KEY = 'astromedia_tokens';
 
 export const storage = {
   getAssets: (): MediaAsset[] => {
@@ -66,5 +67,22 @@ export const storage = {
     const accounts = storage.getConnectedAccounts();
     accounts[platform] = status;
     localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts));
+  },
+
+  saveToken: (platform: string, token: string) => {
+    const tokens = storage.getTokens();
+    tokens[platform] = token;
+    localStorage.setItem(TOKENS_KEY, JSON.stringify(tokens));
+  },
+
+  getTokens: (): Record<string, string> => {
+    const data = localStorage.getItem(TOKENS_KEY);
+    return data ? JSON.parse(data) : {};
+  },
+
+  clearToken: (platform: string) => {
+    const tokens = storage.getTokens();
+    delete tokens[platform];
+    localStorage.setItem(TOKENS_KEY, JSON.stringify(tokens));
   }
 };

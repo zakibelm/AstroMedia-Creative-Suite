@@ -2,7 +2,7 @@
 export const OAUTH_CONFIG = {
   twitter: {
     authUrl: 'https://twitter.com/i/oauth2/authorize',
-    clientId: 'VOTRE_CLIENT_ID_TWITTER', // À remplacer par votre vrai ID
+    clientId: 'VOTRE_CLIENT_ID_TWITTER', 
     scope: 'tweet.read tweet.write users.read offline.access',
   },
   linkedin: {
@@ -19,8 +19,13 @@ export const OAUTH_CONFIG = {
 
 export const generateOAuthUrl = (platform: keyof typeof OAUTH_CONFIG) => {
   const config = OAUTH_CONFIG[platform];
-  const redirectUri = `${window.location.origin}/oauth-callback`;
+  // We include the platform in the redirect URI as a query param so the callback handler knows the context.
+  // In a production environment, this URI must be pre-registered exactly in the provider's developer console.
+  const redirectUri = `${window.location.origin}/oauth-callback?platform=${platform}`;
   const state = Math.random().toString(36).substring(7);
+  
+  // Store state in session storage to verify upon return (prevent CSRF)
+  sessionStorage.setItem(`oauth_state_${platform}`, state);
   
   const params = new URLSearchParams({
     response_type: 'code',
@@ -28,7 +33,7 @@ export const generateOAuthUrl = (platform: keyof typeof OAUTH_CONFIG) => {
     redirect_uri: redirectUri,
     scope: config.scope,
     state: state,
-    // Spécifique à Twitter PKCE
+    // Note: Twitter v2 requires PKCE. For this frontend-only demo, we use a simple challenge.
     code_challenge: 'challenge', 
     code_challenge_method: 'plain'
   });
