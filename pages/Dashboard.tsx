@@ -27,17 +27,29 @@ export const Dashboard: React.FC = () => {
     setRecentAssets(storage.getAssets().slice(0, 3));
     setRecentPosts(storage.getPosts().slice(0, 3));
     
-    const allCampaigns = storage.getCampaigns();
-    const now = new Date();
-    
-    const processedCampaigns = allCampaigns.map(c => {
-      if (c.status === 'scheduled' && c.scheduledAt && new Date(c.scheduledAt) <= now) {
-        return { ...c, status: 'active' as const };
+    const checkScheduledCampaigns = () => {
+      const allCampaigns = storage.getCampaigns();
+      const now = new Date();
+      let changed = false;
+      
+      const processedCampaigns = allCampaigns.map(c => {
+        if (c.status === 'scheduled' && c.scheduledAt && new Date(c.scheduledAt) <= now) {
+          changed = true;
+          return { ...c, status: 'active' as const };
+        }
+        return c;
+      });
+
+      if (changed) {
+        storage.updateCampaigns(processedCampaigns);
       }
-      return c;
-    });
-    
-    setCampaigns(processedCampaigns.slice(0, 5));
+      
+      setCampaigns(processedCampaigns.slice(0, 5));
+    };
+
+    checkScheduledCampaigns();
+    const interval = setInterval(checkScheduledCampaigns, 10000); // Check every 10s
+    return () => clearInterval(interval);
   }, []);
 
   const getStatusColor = (status: Campaign['status']) => {
@@ -118,7 +130,7 @@ export const Dashboard: React.FC = () => {
             <div className="space-y-4">
               {campaigns.length === 0 ? (
                 <div className="py-12 text-center text-slate-600 border border-dashed border-slate-800 rounded-3xl">
-                  <p className="text-xs font-bold uppercase tracking-widest opacity-50">Pipeline vide.</p>
+                  <p className="text-xs font-bold uppercase tracking-widest opacity-50">{t('dashboard.emptyPipeline')}</p>
                 </div>
               ) : campaigns.map(campaign => (
                 <div key={campaign.id} className="p-4 bg-slate-900/50 border border-slate-800 rounded-2xl flex items-center justify-between group hover:border-slate-700 transition-all">
@@ -134,7 +146,7 @@ export const Dashboard: React.FC = () => {
                         </span>
                         {campaign.status === 'scheduled' && campaign.scheduledAt && (
                           <span className="text-[10px] font-mono text-blue-400 font-bold">
-                            T- {new Date(campaign.scheduledAt).toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-US')}
+                            {t('dashboard.scheduledPrefix')}{new Date(campaign.scheduledAt).toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-US')}
                           </span>
                         )}
                       </div>

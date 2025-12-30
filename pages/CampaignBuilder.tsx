@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { storage } from '../services/storage';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from '../services/i18n';
 
 export const CampaignBuilder: React.FC = () => {
+  const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('engagement');
@@ -37,9 +39,9 @@ export const CampaignBuilder: React.FC = () => {
 
     storage.saveCampaign(newCampaign);
     if (isScheduled) {
-      alert(`📅 Campaign queued for transmission on ${new Date(scheduledDate).toLocaleString()}`);
+      alert(`📅 ${t('campaign.scheduledNote')}`);
     } else {
-      alert("🚀 Campaign synchronized with n8n orchestration engine and launched successfully!");
+      alert("🚀 Campaign launched successfully!");
     }
     navigate('/'); 
   };
@@ -49,8 +51,8 @@ export const CampaignBuilder: React.FC = () => {
   return (
     <div className="p-8 max-w-4xl mx-auto space-y-8 animate-fadeIn">
       <div className="space-y-2">
-        <h1 className="text-4xl font-black tracking-tighter uppercase text-white">Campaign Orchestrator</h1>
-        <p className="text-slate-400 font-medium text-lg">Configure your multi-armed bandit LLM routing strategy.</p>
+        <h1 className="text-4xl font-black tracking-tighter uppercase text-white">{t('campaign.title')}</h1>
+        <p className="text-slate-400 font-medium text-lg">{t('campaign.subtitle')}</p>
       </div>
 
       {/* Stepper */}
@@ -74,11 +76,11 @@ export const CampaignBuilder: React.FC = () => {
           <div className="space-y-8 animate-slideInRight">
             <div className="flex items-center gap-4 text-purple-400">
                <span className="text-2xl">🎯</span>
-               <h2 className="text-2xl font-black uppercase tracking-tight">Core Objectives</h2>
+               <h2 className="text-2xl font-black uppercase tracking-tight">{t('campaign.steps.objectives')}</h2>
             </div>
             
             <div className="space-y-2">
-              <label className="block text-xs font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Campaign Identifier</label>
+              <label className="block text-xs font-black text-slate-500 uppercase tracking-[0.2em] ml-1">{t('campaign.identifier')}</label>
               <input 
                 type="text" 
                 className="w-full bg-slate-900/50 border border-slate-700 rounded-2xl p-5 text-white outline-none focus:ring-2 focus:ring-purple-500 transition-all font-medium text-lg" 
@@ -90,12 +92,12 @@ export const CampaignBuilder: React.FC = () => {
             </div>
 
             <div className="space-y-4">
-              <label className="block text-xs font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Optimization Goal</label>
+              <label className="block text-xs font-black text-slate-500 uppercase tracking-[0.2em] ml-1">{t('campaign.optGoal')}</label>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  { id: 'engagement', label: 'Engagement', icon: '🔥', desc: 'Boost social reach' },
-                  { id: 'conversion', label: 'Conversion', icon: '💰', desc: 'Maximize sales' },
-                  { id: 'brand', label: 'Awareness', icon: '📣', desc: 'Long-term growth' },
+                  { id: 'engagement', label: t('campaign.goals.engagement'), icon: '🔥', desc: 'Boost social reach' },
+                  { id: 'conversion', label: t('campaign.goals.conversion'), icon: '💰', desc: 'Maximize sales' },
+                  { id: 'brand', label: t('campaign.goals.awareness'), icon: '📣', desc: 'Long-term growth' },
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -108,7 +110,6 @@ export const CampaignBuilder: React.FC = () => {
                   >
                     <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
                     <div className="font-black uppercase tracking-tight text-lg">{item.label}</div>
-                    <div className="text-xs font-medium opacity-60 mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -120,7 +121,7 @@ export const CampaignBuilder: React.FC = () => {
           <div className="space-y-8 animate-slideInRight">
             <div className="flex items-center gap-4 text-blue-400">
                <span className="text-2xl">⚡</span>
-               <h2 className="text-2xl font-black uppercase tracking-tight">Workflow Triggers</h2>
+               <h2 className="text-2xl font-black uppercase tracking-tight">{t('campaign.steps.triggers')}</h2>
             </div>
 
             <div className="p-5 bg-blue-500/10 border border-blue-500/20 rounded-2xl text-blue-300 text-sm font-medium flex gap-3 items-center">
@@ -157,17 +158,17 @@ export const CampaignBuilder: React.FC = () => {
           <div className="space-y-8 animate-slideInRight">
             <div className="flex items-center gap-4 text-emerald-400">
                <span className="text-2xl">📋</span>
-               <h2 className="text-2xl font-black uppercase tracking-tight">Deployment Review</h2>
+               <h2 className="text-2xl font-black uppercase tracking-tight">{t('campaign.steps.review')}</h2>
             </div>
 
             <div className="bg-slate-900/80 border border-slate-800 rounded-[2.5rem] p-8 space-y-8">
                <div className="grid grid-cols-2 gap-8">
                   <div className="space-y-1">
-                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Campaign Identity</p>
+                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{t('campaign.identifier')}</p>
                      <p className="text-2xl font-black text-white">{name}</p>
                   </div>
                   <div className="space-y-1">
-                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Primary Objective</p>
+                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{t('campaign.optGoal')}</p>
                      <p className="text-2xl font-black text-purple-400 capitalize">{goal}</p>
                   </div>
                </div>
@@ -176,8 +177,8 @@ export const CampaignBuilder: React.FC = () => {
                <div className="p-6 bg-slate-800/50 border border-slate-700 rounded-3xl space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-bold text-white uppercase tracking-tight">Temporal Scheduling</p>
-                      <p className="text-[10px] text-slate-500 font-medium">Broadcast at a specific window</p>
+                      <p className="text-sm font-bold text-white uppercase tracking-tight">{t('campaign.temporal')}</p>
+                      <p className="text-[10px] text-slate-500 font-medium">{t('campaign.scheduleLabel')}</p>
                     </div>
                     <button 
                       onClick={() => setIsScheduled(!isScheduled)}
@@ -196,7 +197,7 @@ export const CampaignBuilder: React.FC = () => {
                         className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:ring-2 focus:ring-emerald-500 outline-none font-mono"
                       />
                       <p className="text-[10px] text-emerald-500 mt-2 italic font-medium">
-                        * Automatic deployment node will trigger at selected timestamp.
+                        {t('campaign.autoTriggerNote')}
                       </p>
                     </div>
                   )}
@@ -218,8 +219,8 @@ export const CampaignBuilder: React.FC = () => {
                <div className="text-3xl">🚀</div>
                <p className="text-sm text-emerald-300 font-medium leading-relaxed">
                  {isScheduled 
-                   ? `Transmission scheduled. The campaign will enter the multi-agent queue at the specified time.`
-                   : `Ready for transmission. All assets linked to this campaign will be automatically routed through the optimized LLM bandit logic.`
+                   ? t('campaign.scheduledNote')
+                   : t('campaign.transmissionNote')
                  }
                </p>
             </div>
@@ -235,7 +236,7 @@ export const CampaignBuilder: React.FC = () => {
               step === 1 ? 'opacity-0 pointer-events-none' : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
             }`}
           >
-            ← Previous
+            {t('campaign.prev')}
           </button>
           
           {step < 3 ? (
@@ -248,7 +249,7 @@ export const CampaignBuilder: React.FC = () => {
                 : 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-purple-500/20'
               }`}
             >
-              Continue Execution →
+              {t('campaign.continue')}
             </button>
           ) : (
             <button 
@@ -256,7 +257,7 @@ export const CampaignBuilder: React.FC = () => {
               disabled={isScheduled && !scheduledDate}
               className={`px-10 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl shadow-emerald-500/20 hover:scale-105 transition-all active:scale-95 ${isScheduled && !scheduledDate ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              {isScheduled ? '📅 Schedule Launch' : '🚀 Launch Deployment'}
+              {isScheduled ? t('campaign.schedule') : t('campaign.launch')}
             </button>
           )}
         </div>

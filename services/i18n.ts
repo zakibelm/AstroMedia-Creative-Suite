@@ -35,7 +35,9 @@ export const translations = {
       transmission: "Pulse de Transmission",
       viewAll: "Voir Tout",
       openVault: "Ouvrir le Coffre →",
-      goStudio: "Console de Diffusion →"
+      goStudio: "Console de Diffusion →",
+      emptyPipeline: "Aucune campagne active ou planifiée.",
+      scheduledPrefix: "Planifié pour : "
     },
     campaign: {
       title: "Orchestrateur de Campagne",
@@ -51,8 +53,16 @@ export const translations = {
         awareness: "Notoriété"
       },
       launch: "Lancer le Déploiement",
-      schedule: "Planifier le Lancement",
-      temporal: "Planification Temporelle"
+      schedule: "Planifier la campagne",
+      temporal: "Planification Temporelle",
+      scheduleLabel: "Diffusion à un créneau spécifique",
+      autoTriggerNote: "* Le nœud de déploiement automatique se déclenchera à l'horodatage sélectionné.",
+      prev: "← Précédent",
+      continue: "Continuer l'Exécution →",
+      transmissionNote: "Prêt pour la transmission. Tous les actifs liés seront automatiquement routés.",
+      scheduledNote: "Transmission planifiée. La campagne entrera dans la file d'attente multi-agents à l'heure spécifiée.",
+      identifier: "Identifiant de Campagne",
+      optGoal: "Objectif d'Optimisation"
     },
     studio: {
       title: "Studio Créatif",
@@ -105,7 +115,9 @@ export const translations = {
       transmission: "Transmission Pulse",
       viewAll: "View All",
       openVault: "Open Repository Vault →",
-      goStudio: "Go to Broadcast Console →"
+      goStudio: "Go to Broadcast Console →",
+      emptyPipeline: "No active or scheduled campaigns.",
+      scheduledPrefix: "Scheduled for: "
     },
     campaign: {
       title: "Campaign Orchestrator",
@@ -121,8 +133,16 @@ export const translations = {
         awareness: "Awareness"
       },
       launch: "Launch Deployment",
-      schedule: "Schedule Launch",
-      temporal: "Temporal Scheduling"
+      schedule: "Schedule Campaign",
+      temporal: "Temporal Scheduling",
+      scheduleLabel: "Broadcast at a specific window",
+      autoTriggerNote: "* Automatic deployment node will trigger at selected timestamp.",
+      prev: "← Previous",
+      continue: "Continue Execution →",
+      transmissionNote: "Ready for transmission. All assets linked will be automatically routed.",
+      scheduledNote: "Transmission scheduled. The campaign will enter the multi-agent queue at the specified time.",
+      identifier: "Campaign Identifier",
+      optGoal: "Optimization Goal"
     },
     studio: {
       title: "Creative Studio",

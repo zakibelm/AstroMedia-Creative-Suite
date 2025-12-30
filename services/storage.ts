@@ -53,6 +53,10 @@ export const storage = {
     localStorage.setItem(CAMPAIGNS_KEY, JSON.stringify([campaign, ...campaigns]));
   },
 
+  updateCampaigns: (campaigns: Campaign[]) => {
+    localStorage.setItem(CAMPAIGNS_KEY, JSON.stringify(campaigns));
+  },
+
   getConnectedAccounts: (): Record<string, boolean> => {
     const data = localStorage.getItem(ACCOUNTS_KEY);
     return data ? JSON.parse(data) : {
