@@ -1,18 +1,20 @@
 
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-const navItems = [
-  { name: 'Dashboard', path: '/', icon: '📊' },
-  { name: 'Campaign Builder', path: '/campaigns', icon: '🚀' },
-  { name: 'Creative Studio', path: '/studio', icon: '🎨' },
-  { name: 'Content Library', path: '/library', icon: '📁' },
-  { name: 'Analytics', path: '/analytics', icon: '📈' },
-];
+import { useTranslation } from '../services/i18n';
 
 export const Sidebar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const navItems = [
+    { name: t('nav.dashboard'), path: '/', icon: '📊' },
+    { name: t('nav.campaign'), path: '/campaigns', icon: '🚀' },
+    { name: t('nav.studio'), path: '/studio', icon: '🎨' },
+    { name: t('nav.library'), path: '/library', icon: '📁' },
+    { name: t('nav.analytics'), path: '/analytics', icon: '📈' },
+  ];
 
   const isActive = (path: string) => {
     if (path === '/' && location.pathname === '/') return true;
@@ -41,7 +43,7 @@ export const Sidebar: React.FC = () => {
             }`}
           >
             <span className="text-xl">{item.icon}</span>
-            <span className="font-medium">{item.name}</span>
+            <span className="font-medium text-sm">{item.name}</span>
           </button>
         ))}
       </nav>
@@ -52,8 +54,8 @@ export const Sidebar: React.FC = () => {
             JD
           </div>
           <div>
-            <p className="text-sm font-semibold">John Doe</p>
-            <p className="text-xs text-slate-400">Premium Plan</p>
+            <p className="text-sm font-semibold">{t('system.welcome')}</p>
+            <p className="text-xs text-slate-400">{t('system.plan')}</p>
           </div>
         </div>
       </div>
