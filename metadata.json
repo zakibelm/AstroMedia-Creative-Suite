@@ -1,0 +1,8 @@
+{
+  "name": "AstroMedia Creative Suite",
+  "description": "A high-performance media orchestration platform leveraging AI for automated image/video generation and campaign management, integrated with n8n-style workflow concepts.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
