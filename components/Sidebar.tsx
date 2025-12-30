@@ -11,6 +11,7 @@ export const Sidebar: React.FC = () => {
   const navItems = [
     { name: t('nav.dashboard'), path: '/', icon: '📊' },
     { name: t('nav.agents'), path: '/agents', icon: '🤖' },
+    { name: t('nav.nanobanana'), path: '/nanobanana', icon: '🍌' },
     { name: t('nav.campaign'), path: '/campaigns', icon: '🚀' },
     { name: t('nav.studio'), path: '/studio', icon: '🎨' },
     { name: t('nav.library'), path: '/library', icon: '📁' },
@@ -55,8 +56,8 @@ export const Sidebar: React.FC = () => {
             JD
           </div>
           <div>
-            <p className="text-sm font-semibold">{t('system.welcome')}</p>
-            <p className="text-xs text-slate-400">{t('system.plan')}</p>
+            <p className="text-sm font-semibold">JD-Enterprise-01</p>
+            <p className="text-xs text-slate-400">Pro Tier Active</p>
           </div>
         </div>
       </div>

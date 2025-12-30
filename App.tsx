@@ -9,6 +9,7 @@ import { ContentLibrary } from './pages/ContentLibrary';
 import { Analytics } from './pages/Analytics';
 import { Settings } from './pages/Settings';
 import { AiAgentTeam } from './pages/AiAgentTeam';
+import { NanoBananaLab } from './pages/NanoBananaLab';
 import { OAuthCallback } from './pages/OAuthCallback';
 import { I18nContext, Language, translations } from './services/i18n';
 
@@ -29,7 +30,7 @@ const App: React.FC = () => {
               <div className="flex items-center gap-2">
                  <span className="text-emerald-500 animate-pulse">●</span>
                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                   {t('system.nominal')}: {t('system.alpha')}
+                   NOMINAL STATUS: SYSTEM ALPHA
                  </span>
               </div>
               
@@ -65,6 +66,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/studio" element={<CreativeStudio />} />
                 <Route path="/agents" element={<AiAgentTeam />} />
+                <Route path="/nanobanana" element={<NanoBananaLab />} />
                 <Route path="/campaigns" element={<CampaignBuilder />} />
                 <Route path="/library" element={<ContentLibrary />} />
                 <Route path="/analytics" element={<Analytics />} />

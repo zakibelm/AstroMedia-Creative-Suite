@@ -12,7 +12,18 @@ export const translations = {
       library: "Médiathèque",
       analytics: "Analyses",
       settings: "Paramètres",
-      agents: "Équipe d'Agents AI"
+      agents: "Équipe d'Agents AI",
+      nanobanana: "Lab NanoBanana"
+    },
+    nanobanana: {
+      title: "Lab d'Alchimie NanoBanana",
+      subtitle: "Génération d'images ultra-rapide et transformations neuronales avancées.",
+      transform: "Transformer l'Image",
+      generate: "Génération Pure",
+      promptLabel: "Instruction de Mutation",
+      uploadLabel: "Source de Données Visuelles",
+      execute: "Fusionner les Pixels",
+      processing: "Inférence en cours..."
     },
     agents: {
       title: "Centre de Commande des Agents",
@@ -20,7 +31,8 @@ export const translations = {
       activeMission: "Mission Active",
       learningRate: "Taux d'Apprentissage",
       efficiency: "Efficacité Node",
-      lastAction: "Dernière Opération"
+      lastAction: "Dernière Opération",
+      initACM: "Déclencher Boucle ACM"
     },
     dashboard: {
       title: "Commande Système",
@@ -83,7 +95,18 @@ export const translations = {
       library: "Content Library",
       analytics: "Analytics",
       settings: "Settings",
-      agents: "AI Agent Team"
+      agents: "AI Agent Team",
+      nanobanana: "NanoBanana Lab"
+    },
+    nanobanana: {
+      title: "NanoBanana Alchemy Lab",
+      subtitle: "Ultra-fast image generation and advanced neural transformations.",
+      transform: "Image Morphing",
+      generate: "Pure Generation",
+      promptLabel: "Mutation Directive",
+      uploadLabel: "Visual Data Source",
+      execute: "Merge Pixels",
+      processing: "Inference in progress..."
     },
     agents: {
       title: "Agent Command Center",
@@ -91,7 +114,8 @@ export const translations = {
       activeMission: "Active Mission",
       learningRate: "Learning Rate",
       efficiency: "Node Efficiency",
-      lastAction: "Last Operation"
+      lastAction: "Last Operation",
+      initACM: "Trigger ACM Loop"
     },
     dashboard: {
       title: "System Command",
