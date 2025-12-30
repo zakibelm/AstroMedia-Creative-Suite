@@ -12,6 +12,14 @@ export interface MediaAsset {
   campaignId?: string; // Optional link to a campaign
 }
 
+export interface CampaignReport {
+  sentimentScore: number;
+  engagementQuality: 'high' | 'medium' | 'low';
+  lessonsLearned: string[];
+  selfCorrectionPlan: string;
+  generatedAt: string;
+}
+
 export interface Campaign {
   id: string;
   name: string;
@@ -24,6 +32,7 @@ export interface Campaign {
   };
   lastUpdated: string;
   scheduledAt?: string;
+  aiReport?: CampaignReport;
 }
 
 export interface SocialPost {
@@ -35,6 +44,30 @@ export interface SocialPost {
   scheduledFor?: string;
   publishedAt?: string;
   jobId: string; // n8n tracking ID
+}
+
+export type AgentStep = 'execute' | 'observe' | 'validate' | 'conform' | 'retry';
+
+export interface AgentTask {
+  id: string;
+  agentId: string;
+  title: string;
+  currentStep: AgentStep;
+  attempts: number;
+  maxAttempts: number;
+  logs: string[];
+  status: 'running' | 'completed' | 'failed';
+}
+
+export interface AIAgent {
+  id: string;
+  name: string;
+  role: string;
+  status: 'idle' | 'processing' | 'learning';
+  specialization: string;
+  efficiency: number;
+  lastAction: string;
+  avatar: string;
 }
 
 export interface GenerationStatus {

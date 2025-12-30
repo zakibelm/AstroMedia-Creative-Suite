@@ -10,6 +10,7 @@ export const Sidebar: React.FC = () => {
 
   const navItems = [
     { name: t('nav.dashboard'), path: '/', icon: '📊' },
+    { name: t('nav.agents'), path: '/agents', icon: '🤖' },
     { name: t('nav.campaign'), path: '/campaigns', icon: '🚀' },
     { name: t('nav.studio'), path: '/studio', icon: '🎨' },
     { name: t('nav.library'), path: '/library', icon: '📁' },

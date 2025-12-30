@@ -1,11 +1,12 @@
 
-import { MediaAsset, SocialPost, Campaign } from '../types';
+import { MediaAsset, SocialPost, Campaign, AIAgent } from '../types';
 
 const ASSETS_KEY = 'astromedia_assets';
 const POSTS_KEY = 'astromedia_posts';
 const CAMPAIGNS_KEY = 'astromedia_campaigns';
 const ACCOUNTS_KEY = 'astromedia_accounts';
 const TOKENS_KEY = 'astromedia_tokens';
+const AGENTS_KEY = 'astromedia_agents';
 
 export const storage = {
   getAssets: (): MediaAsset[] => {
@@ -55,6 +56,17 @@ export const storage = {
 
   updateCampaigns: (campaigns: Campaign[]) => {
     localStorage.setItem(CAMPAIGNS_KEY, JSON.stringify(campaigns));
+  },
+
+  getAgents: (): AIAgent[] => {
+    const data = localStorage.getItem(AGENTS_KEY);
+    const defaultAgents: AIAgent[] = [
+      { id: 'a1', name: 'Oracle-01', role: 'Campaign Orchestrator', status: 'idle', specialization: 'Bandit Routing & Budgeting', efficiency: 98, lastAction: 'Optimized Q4 spend', avatar: '🧠' },
+      { id: 'a2', name: 'Vinci-X', role: 'Creative Director', status: 'idle', specialization: 'Multi-modal Asset Gen', efficiency: 94, lastAction: 'Rendered 4K Video', avatar: '🎨' },
+      { id: 'a3', name: 'Echo-ACM', role: 'Community Manager', status: 'processing', specialization: 'Engagement & Sentiment Analysis', efficiency: 96, lastAction: 'Responded to 12 comments', avatar: '💬' },
+      { id: 'a4', name: 'DataPulse', role: 'Insight Analyst', status: 'learning', specialization: 'Retrospective Reporting', efficiency: 91, lastAction: 'Analyzing campaign delta', avatar: '📈' },
+    ];
+    return data ? JSON.parse(data) : defaultAgents;
   },
 
   getConnectedAccounts: (): Record<string, boolean> => {

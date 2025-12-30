@@ -1,5 +1,5 @@
 
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 
 // Standardizing the Gemini client initialization
 export const getGeminiClient = () => {
@@ -33,6 +33,50 @@ export async function generateAIIImage(prompt: string, aspectRatio: string = "1:
   }
   
   throw new Error("No image data found in response");
+}
+
+export async function validateAgentAction(agentRole: string, action: string, context: string) {
+  const ai = getGeminiClient();
+  const response = await ai.models.generateContent({
+    model: 'gemini-3-flash-preview',
+    contents: `As an AI ${agentRole}, validate this action: "${action}" in the context of: "${context}". Is it compliant with brand safety and performance goals? Respond ONLY with a JSON object: { "compliant": boolean, "reason": "string", "suggestedCorrection": "string" }`,
+    config: {
+      responseMimeType: "application/json",
+      responseSchema: {
+        type: Type.OBJECT,
+        properties: {
+          compliant: { type: Type.BOOLEAN },
+          reason: { type: Type.STRING },
+          suggestedCorrection: { type: Type.STRING }
+        },
+        required: ["compliant", "reason", "suggestedCorrection"]
+      }
+    }
+  });
+
+  return JSON.parse(response.text || "{}");
+}
+
+export async function generateCampaignRetrospective(campaignData: any) {
+  const ai = getGeminiClient();
+  const response = await ai.models.generateContent({
+    model: 'gemini-3-pro-preview',
+    contents: `Analyze this campaign data and provide a retrospective report: ${JSON.stringify(campaignData)}. Include lessons learned and a self-correction plan.`,
+    config: {
+      responseMimeType: "application/json",
+      responseSchema: {
+        type: Type.OBJECT,
+        properties: {
+          sentimentScore: { type: Type.NUMBER },
+          engagementQuality: { type: Type.STRING },
+          lessonsLearned: { type: Type.ARRAY, items: { type: Type.STRING } },
+          selfCorrectionPlan: { type: Type.STRING }
+        },
+        required: ["sentimentScore", "engagementQuality", "lessonsLearned", "selfCorrectionPlan"]
+      }
+    }
+  });
+  return JSON.parse(response.text || "{}");
 }
 
 export async function startVideoGeneration(prompt: string, aspectRatio: "16:9" | "9:16" = "16:9") {

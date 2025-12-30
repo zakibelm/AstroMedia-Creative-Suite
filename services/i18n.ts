@@ -11,13 +11,16 @@ export const translations = {
       studio: "Studio Créatif",
       library: "Médiathèque",
       analytics: "Analyses",
-      settings: "Paramètres"
+      settings: "Paramètres",
+      agents: "Équipe d'Agents AI"
     },
-    system: {
-      nominal: "Système Nominal",
-      alpha: "v4.2.0-Alpha",
-      welcome: "John Doe",
-      plan: "Plan Premium"
+    agents: {
+      title: "Centre de Commande des Agents",
+      subtitle: "Supervisez vos entités autonomes et leurs cycles d'apprentissage.",
+      activeMission: "Mission Active",
+      learningRate: "Taux d'Apprentissage",
+      efficiency: "Efficacité Node",
+      lastAction: "Dernière Opération"
     },
     dashboard: {
       title: "Commande Système",
@@ -64,24 +67,12 @@ export const translations = {
       identifier: "Identifiant de Campagne",
       optGoal: "Objectif d'Optimisation"
     },
-    studio: {
-      title: "Studio Créatif",
-      subtitle: "Matérialisez votre vision et déployez-la dans le monde.",
-      tabs: {
-        image: "Gén. Image",
-        video: "Gén. Vidéo",
-        library: "Bibliothèque",
-        publish: "Publier"
-      }
-    },
-    publish: {
-      title: "Console de Diffusion",
-      auth: "Authentification Service",
-      source: "Matériel Source",
-      target: "Cible de Diffusion",
-      narrative: "Récit d'Engagement",
-      execute: "Exécuter la Diffusion",
-      logs: "Logs de Transmission"
+    report: {
+      title: "Rapport de Rétrospective AI",
+      sentiment: "Analyse des Sentiments",
+      lessons: "Leçons Apprises",
+      correction: "Plan d'Auto-Correction",
+      quality: "Qualité de l'Engagement"
     }
   },
   en: {
@@ -91,13 +82,16 @@ export const translations = {
       studio: "Creative Studio",
       library: "Content Library",
       analytics: "Analytics",
-      settings: "Settings"
+      settings: "Settings",
+      agents: "AI Agent Team"
     },
-    system: {
-      nominal: "System Nominal",
-      alpha: "v4.2.0-Alpha",
-      welcome: "John Doe",
-      plan: "Premium Plan"
+    agents: {
+      title: "Agent Command Center",
+      subtitle: "Supervise your autonomous entities and their learning cycles.",
+      activeMission: "Active Mission",
+      learningRate: "Learning Rate",
+      efficiency: "Node Efficiency",
+      lastAction: "Last Operation"
     },
     dashboard: {
       title: "System Command",
@@ -144,24 +138,12 @@ export const translations = {
       identifier: "Campaign Identifier",
       optGoal: "Optimization Goal"
     },
-    studio: {
-      title: "Creative Studio",
-      subtitle: "Materialize your vision and deploy to the world.",
-      tabs: {
-        image: "Image Gen",
-        video: "Video Gen",
-        library: "Library",
-        publish: "Publish"
-      }
-    },
-    publish: {
-      title: "Broadcast Console",
-      auth: "Service Authentication",
-      source: "Source Material",
-      target: "Dispatch Target",
-      narrative: "Engagement Narrative",
-      execute: "Execute Broadcast",
-      logs: "Transmission Logs"
+    report: {
+      title: "AI Retrospective Report",
+      sentiment: "Sentiment Analysis",
+      lessons: "Lessons Learned",
+      correction: "Self-Correction Plan",
+      quality: "Engagement Quality"
     }
   }
 };
